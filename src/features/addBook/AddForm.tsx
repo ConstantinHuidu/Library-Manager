@@ -22,21 +22,24 @@ export const AddForm = () => {
     initialValues: initialValues,
     validationSchema: addBookValidation,
     onSubmit: (values) => {
-      addBook(values).then(() =>
-        showToast("success", "You have successfully added a new book")
-      );
-      resetForm();
+      addBook(values).then(() => {
+        showToast("success", "You have successfully added a new book");
+
+        resetForm();
+      });
     },
   });
 
   return (
     <Stack
+      margin="0 auto"
       marginTop="36px"
       component="form"
       noValidate
       onSubmit={handleSubmit}
       autoComplete="off"
-      width="450px"
+      width="75%"
+      maxWidth="500px"
       gap="12px"
     >
       <TextField
@@ -81,7 +84,6 @@ export const AddForm = () => {
         error={!!errors.description}
         helperText={errors.description}
       />
-
       <Button type="submit">Add new book</Button>
     </Stack>
   );
