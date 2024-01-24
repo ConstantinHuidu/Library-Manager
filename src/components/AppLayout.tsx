@@ -14,7 +14,14 @@ export const AppLayout = () => {
     >
       <Header />
 
-      <Stack width="100%" boxSizing="border-box">
+      <Stack
+        boxSizing="border-box"
+        width="100%"
+        justifyContent="center"
+        alignItems="center"
+        marginTop="48px"
+        paddingX="24px"
+      >
         <Outlet />
       </Stack>
     </Box>
