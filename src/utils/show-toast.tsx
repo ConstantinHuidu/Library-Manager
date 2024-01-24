@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { toast, ToastOptions } from "react-toastify";
 
 import { CheckCircle, Info, Message, Warning } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 
 type NotificationType = "neutral" | "success" | "error" | "warning" | "info";
 
@@ -26,13 +27,13 @@ const getToastIcon = (type: NotificationType) => {
 export function showToast(
   type: NotificationType,
   content: ReactNode,
-  options?: ToastOptions
+  options: ToastOptions = { hideProgressBar: true }
 ): void {
   toast(
-    <div className="toast-message">
-      <span className="toast-icon">{getToastIcon(type)}</span>
+    <Stack gap="8px" direction="row">
+      <span>{getToastIcon(type)}</span>
       <span>{content}</span>
-    </div>,
+    </Stack>,
     {
       ...options,
     }

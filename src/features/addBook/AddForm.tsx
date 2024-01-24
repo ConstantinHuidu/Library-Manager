@@ -1,10 +1,14 @@
-import { Stack, TextField } from "@mui/material";
 import { Button } from "../../components/Button";
-import { addBook } from "../../api/addBook.service";
+
+import { Stack, TextField } from "@mui/material";
+
 import { useFormik } from "formik";
 
-import { Book } from "../types";
 import { addBookValidation } from "./addBookValidation";
+import { addBook } from "../../api/addBook.service";
+import { showToast } from "../../utils/show-toast";
+
+import { Book } from "../types";
 
 const initialValues: Book = {
   title: "",
@@ -18,7 +22,9 @@ export const AddForm = () => {
     initialValues: initialValues,
     validationSchema: addBookValidation,
     onSubmit: (values) => {
-      addBook(values);
+      addBook(values).then(() =>
+        showToast("success", "You have successfully added a new book")
+      );
       resetForm();
     },
   });
