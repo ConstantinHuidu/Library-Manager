@@ -1,10 +1,14 @@
-import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+
+import { AppLayout } from "./components/AppLayout";
+
+// import "./App.css";
 
 function App() {
   return (
-    <>
-      <div>Library manager</div>
-    </>
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
   );
 }
 
