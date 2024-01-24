@@ -6,17 +6,17 @@ export const AppLayout = () => {
   return (
     <Box
       display="flex"
+      flexDirection="column"
       justifyContent="flex-start"
       alignItems="flex-start"
       width="100vw"
       height="100vh"
     >
       <Header />
-      <main style={{ overflow: "auto" }}>
-        <Stack>
-          <Outlet />
-        </Stack>
-      </main>
+
+      <Stack width="100%" boxSizing="border-box">
+        <Outlet />
+      </Stack>
     </Box>
   );
 };
