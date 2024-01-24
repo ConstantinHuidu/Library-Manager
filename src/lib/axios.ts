@@ -2,7 +2,7 @@ import Axios from "axios";
 
 import { showToast } from "../utils/show-toast";
 
-const API_URL = "http://localhost:4040";
+const API_URL = "http://localhost:3001";
 
 function authRequestInterceptor(config: any) {
   config.headers.Accept = "application/json";
