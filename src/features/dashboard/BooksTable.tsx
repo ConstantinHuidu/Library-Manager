@@ -1,16 +1,16 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-
-import { Box, IconButton, Stack } from "@mui/material";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import EditIcon from "@mui/icons-material/Edit";
-import PreviewIcon from "@mui/icons-material/Preview";
-
-import { Book } from "../types";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
+
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
+import { ContextMenu } from "./ContextMenu";
 import { GenericModal } from "../../components/GenericModal";
 import { DeleteModalBody } from "./DeleteModalBody";
-import { useState } from "react";
+
+import { Box } from "@mui/material";
+
+import { Book } from "../types";
 
 type Props = {
   rows: Book[];
@@ -71,25 +71,14 @@ export default function BooksTable({ rows, onDelete }: Props) {
         } = params;
 
         return (
-          <Stack direction="row">
-            <IconButton size="small" onClick={() => navigate(`/edit/${id}`)}>
-              <EditIcon />
-            </IconButton>
-
-            <IconButton size="small" onClick={() => navigate(`/view/${id}`)}>
-              <PreviewIcon />
-            </IconButton>
-
-            <IconButton
-              size="small"
-              onClick={() => handleOpenModal(params.row)}
-            >
-              <DeleteForeverIcon color="error" />
-            </IconButton>
-          </Stack>
+          <ContextMenu
+            handleClickView={() => navigate(`/view/${id}`)}
+            handleClickEdit={() => navigate(`/edit/${id}`)}
+            handleClickDelete={() => handleOpenModal(params.row)}
+          />
         );
       },
-      flex: 0.6,
+      flex: 0.4,
     },
   ];
   return (

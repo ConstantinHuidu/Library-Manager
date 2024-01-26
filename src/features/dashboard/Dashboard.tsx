@@ -1,11 +1,14 @@
-import { Stack } from "@mui/material";
-import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import useSWR, { useSWRConfig } from "swr";
-import { getBooks } from "../../api/getBooks.service";
+
+import { Button } from "../../components/Button";
 import BooksTable from "./BooksTable";
+
+import { getBooks } from "../../api/getBooks.service";
 import { deleteBook } from "../../api/deleteBook.service";
 import { showToast } from "../../utils/show-toast";
+
+import { Stack } from "@mui/material";
 
 export const Dashboard = () => {
   const { data: books = [], isLoading } = useSWR("books", getBooks);
