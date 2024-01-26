@@ -110,6 +110,11 @@ export default function BooksTable({ rows, onDelete }: Props) {
         }}
         pageSizeOptions={[50]}
         disableRowSelectionOnClick
+        sx={{
+          " .MuiDataGrid-columnHeaders": {
+            bgcolor: "#EFEBE9",
+          },
+        }}
       />
       <GenericModal
         open={openDeleteModal}
