@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
+import { Stack } from "@mui/material";
 import { toast, ToastOptions } from "react-toastify";
 
 import { CheckCircle, Info, Message, Warning } from "@mui/icons-material";
-import { Stack } from "@mui/material";
 
 type NotificationType = "neutral" | "success" | "error" | "warning" | "info";
 
