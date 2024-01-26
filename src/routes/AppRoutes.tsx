@@ -13,7 +13,7 @@ const Loadable =
 
 const DahsboardPage = Loadable(lazy(() => import("../pages/BooksDahsboard")));
 const AddBookPage = Loadable(lazy(() => import("../pages/AddNewBook")));
-const ViewBookPage = Loadable(lazy(() => import("../pages/ViewBook")));
+const ViewBookPage = Loadable(lazy(() => import("../pages/ViewBookPage")));
 
 export const AppRoutes = () => {
   return (
