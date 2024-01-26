@@ -61,8 +61,8 @@ export const BookForm = (props: Props) => {
                   label={field.charAt(0).toUpperCase() + field.slice(1)}
                   value={values[field as keyof Book]}
                   onChange={handleChange}
-                  error={!!errors.title}
-                  helperText={errors.title}
+                  error={!!errors[field as keyof Book]}
+                  helperText={errors[field as keyof Book]}
                 />
               );
             }
@@ -77,8 +77,8 @@ export const BookForm = (props: Props) => {
                 label={field.charAt(0).toUpperCase() + field.slice(1)}
                 value={values[field as keyof Book]}
                 onChange={handleChange}
-                error={!!errors.description}
-                helperText={errors.description}
+                error={!!errors[field as keyof Book]}
+                helperText={errors[field as keyof Book]}
               />
             );
           })}
