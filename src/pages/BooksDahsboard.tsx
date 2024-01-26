@@ -1,11 +1,11 @@
 import { Heading } from "../components/Heading";
-import { BooksTable } from "../features/dashboard/BooksTable";
+import { Dashboard } from "../features/dashboard/Dashboard";
 
 const BooksDahsboard = () => {
   return (
     <>
       <Heading label="Books dashboard" />
-      <BooksTable />
+      <Dashboard />
     </>
   );
 };

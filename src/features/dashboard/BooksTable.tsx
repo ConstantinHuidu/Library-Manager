@@ -1,42 +1,87 @@
-import { Stack } from "@mui/material";
-import { Button } from "../../components/Button";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
+import { Box, IconButton, Stack } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
+import PreviewIcon from "@mui/icons-material/Preview";
+
+import { Book } from "../types";
 import { useNavigate } from "react-router-dom";
-import useSWR, { useSWRConfig } from "swr";
-import { getBooks } from "../../api/getBooks.service";
-import GenericTable from "./GenericTable";
-import { deleteBook } from "../../api/deleteBook.service";
-import { showToast } from "../../utils/show-toast";
 
-export const BooksTable = () => {
-  const { data: books = [], isLoading } = useSWR("books", getBooks);
-
-  const navigate = useNavigate();
-  const { mutate } = useSWRConfig();
-
-  const handleDelete = (bookId: string) => {
-    deleteBook(bookId).then(() => {
-      showToast("success", "Successfully deleted this book");
-      mutate("books");
-    });
-  };
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  return (
-    <Stack
-      width="75%"
-      margin="0 auto"
-      marginTop="36px"
-      gap="24px"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-    >
-      <Button size="large" onClick={() => navigate("/add-book")}>
-        Add a new book
-      </Button>
-      <GenericTable rows={books} onDelete={handleDelete} />
-    </Stack>
-  );
+type Props = {
+  rows: Book[];
+  onDelete: (bookId: string) => void;
 };
+
+export default function BooksTable({ rows, onDelete }: Props) {
+  const navigate = useNavigate();
+
+  const columns: GridColDef[] = [
+    {
+      field: "title",
+      headerName: "Title",
+      flex: 1,
+    },
+    {
+      field: "author",
+      flex: 1,
+      headerName: "Author",
+    },
+    {
+      field: "genre",
+      headerName: "Genre",
+      flex: 1,
+    },
+    {
+      field: "description",
+      headerName: "Description",
+      flex: 1,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      align: "center",
+      sortable: false,
+      headerAlign: "center",
+      disableColumnMenu: true,
+      renderCell: (params) => {
+        const {
+          row: { id },
+        } = params;
+
+        return (
+          <Stack direction="row">
+            <IconButton size="small" onClick={() => navigate(`/edit/${id}`)}>
+              <EditIcon />
+            </IconButton>
+            <IconButton size="small" onClick={() => navigate(`/view/${id}`)}>
+              <PreviewIcon />
+            </IconButton>
+            <IconButton size="small" onClick={() => onDelete(id)}>
+              <DeleteForeverIcon color="error" />
+            </IconButton>
+          </Stack>
+        );
+      },
+      flex: 0.6,
+    },
+  ];
+  return (
+    <Box sx={{ height: 600, width: "100%" }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 50,
+            },
+          },
+        }}
+        pageSizeOptions={[50]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </Box>
+  );
+}
