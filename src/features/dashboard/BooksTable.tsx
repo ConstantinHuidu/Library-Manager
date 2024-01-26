@@ -7,6 +7,10 @@ import PreviewIcon from "@mui/icons-material/Preview";
 
 import { Book } from "../types";
 import { useNavigate } from "react-router-dom";
+import { useModal } from "../../hooks/useModal";
+import { GenericModal } from "../../components/GenericModal";
+import { DeleteModalBody } from "./DeleteModalBody";
+import { useState } from "react";
 
 type Props = {
   rows: Book[];
@@ -14,7 +18,24 @@ type Props = {
 };
 
 export default function BooksTable({ rows, onDelete }: Props) {
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const navigate = useNavigate();
+  const {
+    open: openDeleteModal,
+    handleCloseModal: handleCloseDeleteModal,
+    handleOpenModal: handleOpenDeleteModal,
+  } = useModal();
+
+  const handleOpenModal = (book: Book) => {
+    setSelectedBook(book);
+    handleOpenDeleteModal();
+  };
+
+  const onDeleteConfirm = (book: Book) => {
+    onDelete(book.id as string);
+    handleCloseDeleteModal();
+    setSelectedBook(null);
+  };
 
   const columns: GridColDef[] = [
     {
@@ -54,10 +75,15 @@ export default function BooksTable({ rows, onDelete }: Props) {
             <IconButton size="small" onClick={() => navigate(`/edit/${id}`)}>
               <EditIcon />
             </IconButton>
+
             <IconButton size="small" onClick={() => navigate(`/view/${id}`)}>
               <PreviewIcon />
             </IconButton>
-            <IconButton size="small" onClick={() => onDelete(id)}>
+
+            <IconButton
+              size="small"
+              onClick={() => handleOpenModal(params.row)}
+            >
               <DeleteForeverIcon color="error" />
             </IconButton>
           </Stack>
@@ -81,6 +107,18 @@ export default function BooksTable({ rows, onDelete }: Props) {
         pageSizeOptions={[50]}
         checkboxSelection
         disableRowSelectionOnClick
+      />
+      <GenericModal
+        open={openDeleteModal}
+        title="Delete Book"
+        handleClose={handleCloseDeleteModal}
+        handleConfirm={() => {}}
+        body={
+          <DeleteModalBody
+            handleClose={handleCloseDeleteModal}
+            handleConfirm={() => onDeleteConfirm(selectedBook as Book)}
+          />
+        }
       />
     </Box>
   );
