@@ -36,6 +36,8 @@ export const BookForm = (props: Props) => {
           gap="12px"
         >
           {Object.keys(values).map((field) => {
+            if (field === "id") return null;
+
             if (field !== "description") {
               return (
                 <TextField
