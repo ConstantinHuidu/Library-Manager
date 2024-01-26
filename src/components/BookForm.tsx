@@ -1,17 +1,30 @@
-import { Stack, TextField } from "@mui/material";
-import { Button } from "./Button";
-import { Book } from "../features/types";
 import { useFormik } from "formik";
+
+import { Button } from "./Button";
+
 import { addBookValidation } from "../features/addBook/addBookValidation";
+
+import { Stack, TextField } from "@mui/material";
+
+import { Book } from "../features/types";
 
 type Props = {
   buttonLabel: string;
   book: Book;
+  isModal?: boolean;
   onFormSubmit: (values: Book) => void;
+  handleCancel?: () => void;
 };
 
 export const BookForm = (props: Props) => {
-  const { buttonLabel, book, onFormSubmit } = props;
+  const {
+    buttonLabel,
+    book,
+    isModal = false,
+    onFormSubmit,
+    handleCancel,
+  } = props;
+
   const { values, handleSubmit, handleChange, resetForm, errors } = useFormik({
     initialValues: book,
     validationSchema: addBookValidation,
@@ -70,7 +83,22 @@ export const BookForm = (props: Props) => {
             );
           })}
 
-          <Button type="submit">{buttonLabel}</Button>
+          <Stack direction="row" justifyContent="center" gap="20px">
+            {isModal && (
+              <Button
+                size="large"
+                onClick={() => handleCancel?.()}
+                color="error"
+                variant="outlined"
+              >
+                Cancel
+              </Button>
+            )}
+
+            <Button type="submit" size="large">
+              {buttonLabel}
+            </Button>
+          </Stack>
         </Stack>
       )}
     </>
