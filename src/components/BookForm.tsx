@@ -83,7 +83,12 @@ export const BookForm = (props: Props) => {
             );
           })}
 
-          <Stack direction="row" justifyContent="center" gap="20px">
+          <Stack
+            direction={isModal ? "row" : "column"}
+            justifyContent={isModal ? "center" : "flex-start"}
+            gap={isModal ? "20px" : "0"}
+            marginTop="24px"
+          >
             {isModal && (
               <Button
                 size="large"

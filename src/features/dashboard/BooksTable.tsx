@@ -112,7 +112,7 @@ export default function BooksTable({ rows, onDelete }: Props) {
         disableRowSelectionOnClick
         sx={{
           " .MuiDataGrid-columnHeaders": {
-            bgcolor: "#EFEBE9",
+            bgcolor: "#E8EAF6",
           },
         }}
       />

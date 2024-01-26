@@ -13,7 +13,6 @@ const Loadable =
 
 const DahsboardPage = Loadable(lazy(() => import("../pages/BooksDahsboard")));
 const AddBookPage = Loadable(lazy(() => import("../pages/AddNewBook")));
-const EditBookPage = Loadable(lazy(() => import("../pages/EditBook")));
 const ViewBookPage = Loadable(lazy(() => import("../pages/ViewBook")));
 
 export const AppRoutes = () => {
@@ -22,7 +21,6 @@ export const AppRoutes = () => {
       <Route element={<AppLayout />}>
         <Route path="/" element={<DahsboardPage />} />
         <Route path="/view/:id" element={<ViewBookPage />} />
-        <Route path="/edit/:id" element={<EditBookPage />} />
         <Route path="/add-book" element={<AddBookPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
