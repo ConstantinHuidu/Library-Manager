@@ -4,6 +4,7 @@ import { addBook } from "../../api/addBook.service";
 import { showToast } from "../../utils/show-toast";
 
 import { Book } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const emptyBook: Book = {
   title: "",
@@ -13,9 +14,12 @@ const emptyBook: Book = {
 };
 
 export const AddForm = () => {
+  const navigate = useNavigate();
+
   const onFormSubmit = (book: Book) => {
     addBook(book).then(() => {
       showToast("success", "You have successfully added a new book");
+      navigate("/");
     });
   };
 
