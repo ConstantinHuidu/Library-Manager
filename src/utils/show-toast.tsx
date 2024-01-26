@@ -27,7 +27,7 @@ const getToastIcon = (type: NotificationType) => {
 export function showToast(
   type: NotificationType,
   content: ReactNode,
-  options: ToastOptions = { hideProgressBar: true }
+  options: ToastOptions = { hideProgressBar: true, position: "bottom-right" }
 ): void {
   toast(
     <Stack gap="8px" direction="row">

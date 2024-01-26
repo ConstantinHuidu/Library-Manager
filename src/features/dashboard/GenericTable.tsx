@@ -1,29 +1,22 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Book } from "../types";
+
 import { Box, IconButton, Stack } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import PreviewIcon from "@mui/icons-material/Preview";
 
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 14 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 31 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 31 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 11 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
+import { Book } from "../types";
+import { useNavigate } from "react-router-dom";
+
 type Props = {
   rows: Book[];
   onDelete: (bookId: string) => void;
 };
 
 export default function GenericTable({ rows, onDelete }: Props) {
+  const navigate = useNavigate();
+
   const columns: GridColDef[] = [
-    //   { field: "id", headerName: "ID", flex: 1 },
     {
       field: "title",
       headerName: "Title",
@@ -52,15 +45,19 @@ export default function GenericTable({ rows, onDelete }: Props) {
       headerAlign: "center",
       disableColumnMenu: true,
       renderCell: (params) => {
+        const {
+          row: { id },
+        } = params;
+
         return (
           <Stack direction="row">
-            <IconButton>
+            <IconButton size="small" onClick={() => navigate(`/edit/${id}`)}>
               <EditIcon />
             </IconButton>
-            <IconButton>
+            <IconButton size="small" onClick={() => navigate(`/view/${id}`)}>
               <PreviewIcon />
             </IconButton>
-            <IconButton onClick={() => onDelete(params.row.id)}>
+            <IconButton size="small" onClick={() => onDelete(id)}>
               <DeleteForeverIcon color="error" />
             </IconButton>
           </Stack>
@@ -70,7 +67,7 @@ export default function GenericTable({ rows, onDelete }: Props) {
     },
   ];
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ height: 600, width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
