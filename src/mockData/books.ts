@@ -1,4 +1,4 @@
-const books = [
+export const books = [
   {
     id: 1,
     title: "To Kill a Mockingbird",
@@ -48,5 +48,3 @@ const books = [
       "Comprising three volumes – 'The Fellowship of the Ring,' 'The Two Towers,' and 'The Return of the King' – 'The Lord of the Rings' is an epic high fantasy saga set in the fictional world of Middle-earth. The story follows Frodo Baggins, a hobbit tasked with destroying a powerful ring that could bring about the downfall of the world. Alongside a diverse fellowship, including Aragorn, Legolas, Gimli, and Gandalf, Frodo embarks on a perilous journey, facing dark forces and overcoming challenges. Tolkien's work is celebrated for its intricate world-building, rich mythology, and exploration of themes such as friendship, heroism, and the battle between good and evil.",
   },
 ];
-
-console.log(books);
