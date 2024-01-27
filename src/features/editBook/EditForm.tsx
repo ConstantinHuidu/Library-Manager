@@ -27,7 +27,7 @@ export const EditForm = ({ book, handleClose }: Props) => {
     <>
       {book && (
         <BookForm
-          buttonLabel="Edit  book"
+          buttonLabel="Update  book"
           book={book}
           onFormSubmit={onFormSubmit}
           isModal
