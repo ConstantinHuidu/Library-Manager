@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { BookForm } from "../../components/BookForm";
@@ -15,12 +16,19 @@ const emptyBook: Book = {
 };
 
 export const AddForm = () => {
+  const [addAnother, setAddAnother] = useState(false);
   const navigate = useNavigate();
+
+  const handleChange = () => {
+    setAddAnother((current) => !current);
+  };
 
   const onFormSubmit = (book: Book) => {
     addBook(book).then(() => {
       showToast("success", "You have successfully added a new book");
-      navigate("/");
+      if (!addAnother) {
+        navigate("/");
+      }
     });
   };
 
@@ -30,6 +38,8 @@ export const AddForm = () => {
         buttonLabel="add new book"
         book={emptyBook}
         onFormSubmit={onFormSubmit}
+        addAnother={addAnother}
+        handleCheckbox={handleChange}
       />
     </>
   );

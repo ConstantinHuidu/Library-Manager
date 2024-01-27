@@ -4,7 +4,7 @@ import { Button } from "./Button";
 
 import { addBookValidation } from "../features/addBook/addBookValidation";
 
-import { Stack, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, Stack, TextField } from "@mui/material";
 
 import { Book } from "../features/types";
 
@@ -12,8 +12,10 @@ type Props = {
   buttonLabel: string;
   book: Book;
   isModal?: boolean;
+  addAnother?: boolean;
   onFormSubmit: (values: Book) => void;
   handleCancel?: () => void;
+  handleCheckbox?: () => void;
 };
 
 export const BookForm = (props: Props) => {
@@ -21,8 +23,10 @@ export const BookForm = (props: Props) => {
     buttonLabel,
     book,
     isModal = false,
+    addAnother = false,
     onFormSubmit,
     handleCancel,
+    handleCheckbox,
   } = props;
 
   const { values, handleSubmit, handleChange, resetForm, errors } = useFormik({
@@ -100,9 +104,21 @@ export const BookForm = (props: Props) => {
               </Button>
             )}
 
-            <Button type="submit" size="large">
-              {buttonLabel}
-            </Button>
+            <Stack direction="row" justifyContent="space-between">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={addAnother}
+                    onChange={() => handleCheckbox?.()}
+                  />
+                }
+                label="Add another"
+              />
+
+              <Button type="submit" size="large">
+                {buttonLabel}
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
       )}
