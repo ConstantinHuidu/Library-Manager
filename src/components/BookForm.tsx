@@ -23,7 +23,7 @@ export const BookForm = (props: Props) => {
     buttonLabel,
     book,
     isModal = false,
-    addAnother = false,
+    addAnother,
     onFormSubmit,
     handleCancel,
     handleCheckbox,
@@ -105,15 +105,17 @@ export const BookForm = (props: Props) => {
             )}
 
             <Stack direction="row" justifyContent="space-between">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={addAnother}
-                    onChange={() => handleCheckbox?.()}
-                  />
-                }
-                label="Add another"
-              />
+              {!isModal && (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={addAnother}
+                      onChange={() => handleCheckbox?.()}
+                    />
+                  }
+                  label="Add another"
+                />
+              )}
 
               <Button type="submit" size="large">
                 {buttonLabel}

@@ -20,12 +20,12 @@ export const ViewBook = () => {
 
   return (
     <Stack
+      direction="row"
       margin="0 auto"
       marginTop="36px"
       width="75%"
       maxWidth="800px"
       gap="48px"
-      direction="row"
     >
       <img src={bookCover} alt="book-cover" width="50%" />
       {book && (
