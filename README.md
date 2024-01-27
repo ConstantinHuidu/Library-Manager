@@ -2,7 +2,7 @@
 
 ## Steps to run the application
 
-###### <span style="color:orange"> _Scroll to the end to see in app screenshots_</span>
+###### _Scroll to the end to see in app screenshots_
 
 1. In the mock node server replace the empty book list from line 6 with the mock data I've left in my github (it will make it easier to visualize the app without going through the trouble of adding new data if you don't want to):
    [https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/mockData/books.ts](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/mockData/books.ts)
@@ -37,13 +37,11 @@ The project is bootstrapped using **Vite**. It was built with **React** & **Type
 
 - **Delete Books**: Remove unwanted books from your library with a simple delete function.
 
+## Screenshots
+
 #### App home page - the book dashboard
 
 ![dashboard](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/Dashboard.png)
-
-#### Add new book page
-
-![add-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/AddBook.png)
 
 #### View book details
 
@@ -56,3 +54,9 @@ The project is bootstrapped using **Vite**. It was built with **React** & **Type
 #### Delete a book
 
 ![delete-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/Delete.png)
+
+#### Add new book page
+
+If you check the _"Add another"_ checkbox, you will be able to add multiple books consecutively. Leave it uncheck and you will be redirected to the homepage after the new book record is created
+
+![add-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/AddBook.png)
