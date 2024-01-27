@@ -54,9 +54,7 @@ export const ViewBook = () => {
 
           {/* DESCRIPTION / */}
 
-          <Typography variant="caption">
-            Description: {book.description}
-          </Typography>
+          <Typography variant="caption">{book.description}</Typography>
         </Stack>
       )}
     </Stack>
