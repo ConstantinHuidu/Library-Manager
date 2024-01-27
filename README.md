@@ -2,7 +2,7 @@
 
 ## Steps to run the application
 
-###### _Scroll to the end to see in app screenshots_
+###### <span style="color:orange"> _Scroll to the end to see in app screenshots_</span>
 
 1. In the mock node server replace the empty book list from line 6 with the mock data I've left in my github (it will make it easier to visualize the app without going through the trouble of adding new data if you don't want to):
    [https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/mockData/books.ts](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/mockData/books.ts)
@@ -43,8 +43,16 @@ The project is bootstrapped using **Vite**. It was built with **React** & **Type
 
 #### Add new book page
 
+![add-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/AddBook.png)
+
 #### View book details
+
+![view-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/ViewBook.png)
 
 #### Update book details
 
+![update-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/UpdateBook.png)
+
 #### Delete a book
+
+![delete-book](https://github.com/ConstantinHuidu/Library-Manager/blob/master/src/assets/forReadMe/Delete.png)
