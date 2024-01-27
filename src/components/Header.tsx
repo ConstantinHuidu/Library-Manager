@@ -19,7 +19,11 @@ export const Header = () => {
       height="80px"
       boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
     >
-      <Typography variant="h4" sx={{ cursor: "pointer" }}>
+      <Typography
+        variant="h4"
+        sx={{ cursor: "pointer" }}
+        onClick={() => navigate("/")}
+      >
         Library manager
       </Typography>
       <Button
